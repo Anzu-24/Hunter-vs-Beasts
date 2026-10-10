@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b0f19">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Hunter">
+</head>
+
+<script>
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+                console.log("Service Worker registered");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+    });
+
+}
+</script>
+
+<div id="achievement-screen" class="hidden">
+    <img
+        id="achievement-logo"
+        src="assets/ui/achievement.png"
+        alt="Achievements">
+
+    <div id="achievement-list">
+        <div class="achievement-item">
+            <span class="lock" id="ach-40">☐</span>
+            <div>
+                <div class="achievement-title">初心者</div>
+                <div class="achievement-desc">40ターン生存</div>
+            </div>
+        </div>
+        <div class="achievement-item">
+            <span class="lock" id="ach-50">☐</span>
+            <div>
+                <div class="achievement-title">一人前</div>
+                <div class="achievement-desc">50ターン生存</div>
+            </div>
+        </div>
+        
+        <div class="achievement-item">
+            <span class="lock" id="ach-80">☐</span>
+            <div>
+                <div class="achievement-title">プロ</div>
+                <div class="achievement-desc">80ターン生存</div>
+            </div>
+        </div>
+        
+        <div class="achievement-item">
+            <span class="lock" id="ach-100">☐</span>
+            <div>
+                <div class="achievement-title">伝説</div>
+                <div class="achievement-desc">100ターン生存</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="achievement-stats">
+        <div>
+            累計撃破数
+            <span id="total-kills">0</span>
+        </div>
+        <div>
+            最高生存ターン
+            <span id="best-survival">0</span>
+        </div>
+    </div>
+
+    <button id="back-button">
+        Back
+    </button>
+
+</div>
+
+<div id="gameover-screen">
+
+    <img
+        id="gameover-logo"
+        src="assets/ui/gameover.png"
+        alt="Game Over">
+
+    <div id="gameover-log"></div>
+
+    <button id="retry-button">
+        Retry
+    </button>
+
+    <button id="title-button">
+        Title
+    </button>
+
+</div>
+
+<body>
+  <div id="title-screen">
+      <img
+      id="title-logo"
+      src="assets/ui/title.png"
+      alt="Hunter vs Beasts">
+      
+      <div id="title-menu">
+      
+        <button id="start-button">
+          Start
+        </button>
+        
+        <button id="continue-button" style="display:none;">
+            Continue
+        </button>
+
+        <button id="achievement-button">
+          Achievements
+        </button>
+
+  </div>
+
+</div>
+
+  <h1>Hunter vs Beasts</h1>
+
+  <div id="controls">
+    <select id="mode-select" onchange="initGame()">
+      <option value="normal">MODE: NORMAL</option>
+      <option value="rock">MODE: ROCK (🪨)</option>
+    </select>
+    <button onclick="initGame()">RESET</button>
+  </div>
+
+  <div id="stats">
+    <div>TURN: <span id="current-turn">0</span></div>
+    <div>TODAY: <span id="today-best">0</span></div>
+    <div>BEST: <span id="best-turn">0</span></div>
+  </div>
+
+  <div id="board-container">
+    <div id="grid"></div>
+    <div id="pieces-layer"></div>
+  </div>
+
+  <div id="log"></div>
+
+<script src="js/game.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js");
+  });
+}
+</script>
+</body>
+</html>
