@@ -1,3 +1,11 @@
+document.addEventListener('selectstart', (e) => {
+  e.preventDefault();
+});
+
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+});
+
 const PIECES = {
   PLAYER: {
     image: 'assets/pieces/hunter.png',
