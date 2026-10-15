@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="manifest" href="manifest.json">
+  
+
+  <meta name="theme-color" content="#0b0f19">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Hunter">
+  <link rel="apple-touch-icon" href="assets/icon/icon-192.png">
+
+</head>
+
+<script>
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+                console.log("Service Worker registered");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+    });
+
+}
+</script>
+<body>
+
+    <!--=========================
+        Title Screen
+    ==========================-->
+    <div class="title-screen">
+        <img
+        class="title-logo"
+        src="assets/ui/title.png"
+        alt="Hunter vs Beasts">
+
+        <div class="title-menu">
+
+            <button class="menu-button start-button">
+                Start
+            </button>
+
+            <button class="menu-button continue-button hidden">
+                Continue
+            </button>
+
+            <button class="menu-button achievement-button">
+                Achievements
+            </button>
+
+            <button class="menu-button menu-open-button">
+                Menu
+            </button>
+
+        </div>
+    </div>
+
+    <!--=========================
+       Menu
+    ==========================-->
+    <div class="menu-screen hidden">
+      
+        <div class="menu-content">
+
+            <h2>How to Play</h2>
+            <p>
+                ・赤いマスはBeastの攻撃範囲です。<br>
+                ・狩人が入るとゲームオーバーになります。<br><br>
+
+                ・黄色いマスは飛行Beastの移動範囲です。<br>
+                ・飛行するには間に他の駒が必要です。<br><br>
+
+                ・炎を纏ったBeastを倒すと、狩人も炎を纏います。<br>
+                ・炎状態では移動後に十字範囲へ攻撃できます。<br><br>
+
+                ・Rock Modeでは岩が障害物になります。<br>
+                ・岩は移動できず、攻撃も通りません。<br><br>
+
+                ・最強の称号「Beast Hunter」を目指しましょう!
+            </p>
+
+            <hr>
+
+            <h2>Save Data</h2>
+
+            <p>
+                ゲームデータをファイルとして保存・復元できます。<br>
+                機種変更やブラウザのデータ削除に備えて、<br>
+                定期的な保存（Export Save）をおすすめします。
+            </p>
+
+            <button class="menu-button export-button">
+                Export Save
+            </button>
+
+            <button class="menu-button import-button">
+                Import Save
+            </button>
+
+            <input
+            class="import-file"
+            type="file"
+            accept=".json"
+            hidden>
+
+        </div>
+
+        <button class="menu-button back-button">
+            Back
+        </button>
+
+        <div class="menu-footer">
+            Created by
+            <span class="game-author"></span>
+            <br>
+
+            Version
+            <span class="game-version"></span>
+
+        </div>
+    </div>
+
+
+    <!--=========================
+        Achievement Screen
+    ==========================-->
+    <div class="achievement-screen hidden">
+
+        <img
+            class="achievement-logo"
+            src="assets/ui/achievement.png"
+            alt="Achievements">
+
+        <div class="achievement-list">
+
+            <!-- Achievement Items -->
+
+            <div class="achievement-item">
+                <span class="lock" id="ach-40">☐</span>
+                <div>
+                    <div class="achievement-title">初心者</div>
+                    <div class="achievement-desc">40ターン生存</div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <span class="lock" id="ach-50">☐</span>
+                <div>
+                    <div class="achievement-title">一人前</div>
+                    <div class="achievement-desc">50ターン生存</div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <span class="lock" id="ach-80">☐</span>
+                <div>
+                    <div class="achievement-title">プロ</div>
+                    <div class="achievement-desc">80ターン生存</div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <span class="lock" id="ach-100">☐</span>
+                <div>
+                    <div class="achievement-title">伝説</div>
+                    <div class="achievement-desc">100ターン生存</div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <span class="lock" id="ach-150">☐</span>
+                <div>
+                    <div class="achievement-title">狩人王</div>
+                    <div class="achievement-desc">150ターン生存</div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <span class="lock" id="ach-200">☐</span>
+                <div>
+                    <div class="achievement-title">神</div>
+                    <div class="achievement-desc">200ターン生存</div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <span class="lock" id="ach-300">☐</span>
+                <div>
+                    <div class="achievement-title">Beast Hunter</div>
+                    <div class="achievement-desc">300ターン生存</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="achievement-stats">
+
+            <div>
+                累計撃破数
+                <span class="total-kills">0</span>
+            </div>
+
+            <div>
+                最高生存ターン Normal
+                <span class="best-survival">0</span>
+            </div>
+
+            <div>
+                最高生存ターン Rock
+                <span class="rock-best-survival">0</span>
+            </div>
+
+        </div>
+
+        <button class="menu-button back-button">
+            Back
+        </button>
+
+    </div>
+
+
+    <!--=========================
+        Game Over Screen
+    ==========================-->
+    <div class="gameover-screen hidden">
+
+        <img
+            class="gameover-logo"
+            src="assets/ui/gameover.png"
+            alt="Game Over">
+
+        <div class="gameover-log"></div>
+
+        <button class="menu-button retry-button">
+            Retry
+        </button>
+
+        <button class="menu-button title-button">
+            Title
+        </button>        
+
+    </div>
+    
+    <!--=========================
+        Game UI
+    ==========================-->
+    <div class="game-ui">
+
+        <!--=========================
+        Reset確認
+        ==========================-->
+        <div class="controls">
+            <select class="mode-select">
+                <option value="normal">Mode : Normal</option>
+                <option value="rock">Mode : Rock</option>
+            </select>
+
+            <button class="menu-button reset-button">
+                Reset
+            </button>
+        </div>
+
+        <div class="confirm-screen hidden">
+            <div class="confirm-window">
+                <div class="confirm-title">
+                    確認
+                </div>
+
+                <div class="confirm-message">
+                    中断してもよろしいですか？
+                    <br>
+                    現在のセーブデータは削除されます。
+                </div>
+
+
+                <div class="confirm-buttons">
+                    <button class="confirm-yes">
+                        Yes
+                    </button>
+
+                    <button class="confirm-no">
+                        No
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+
+            <div class="stat-item">
+                Turn :
+                <span class="current-turn">0</span>
+            </div>
+
+            <div class="stat-item">
+                Today :
+                <span class="today-best">0</span>
+            </div>
+
+            <div class="stat-item">
+                Best :
+                <span class="best-turn">0</span>
+            </div>
+
+        </div>
+
+
+        <div class="board-container">
+
+            <div class="grid"></div>
+
+            <div class="pieces-layer"></div>
+
+        </div>
+
+        <div class="log"></div>
+    </div>
+
+   
+</body>
+
+<script src="js/config.js"></script>
+<script src="js/save.js"></script>
+<script src="js/achievements.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/player.js"></script>
+<script src="js/enemy.js"></script>
+<script src="js/game.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./serviceWorker.js");
+  });
+}
+</script>
+
+</html>
