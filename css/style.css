@@ -4,7 +4,12 @@
 .hide{opacity:0;pointer-events:none;}
 
 * {box-sizing: border-box;}
-
+* {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
 :root {
   --bg-color: #0b0f19;
   --panel-bg: #111827;
