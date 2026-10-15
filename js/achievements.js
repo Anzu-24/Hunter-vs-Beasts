@@ -4,7 +4,7 @@
 const ACHIEVEMENTS = [
     {
         turn: 40,
-        id: "ach-40",
+        id: "#ach-40",
         key: "achievement_40",
         name: "初心者",
         description: "40 Turns"
@@ -12,7 +12,7 @@ const ACHIEVEMENTS = [
 
     {
         turn: 50,
-        id: "ach-50",
+        id: "#ach-50",
         key: "achievement_50",
         name: "一人前",
         description: "50 Turns"
@@ -20,7 +20,7 @@ const ACHIEVEMENTS = [
 
     {
         turn: 80,
-        id: "ach-80",
+        id: "#ach-80",
         key: "achievement_80",
         name: "プロ",
         description: "80 Turns"
@@ -28,7 +28,7 @@ const ACHIEVEMENTS = [
 
     {
         turn: 100,
-        id: "ach-100",
+        id: "#ach-100",
         key: "achievement_100",
         name: "伝説",
         description: "100 Turns"
@@ -36,7 +36,7 @@ const ACHIEVEMENTS = [
 
     {
         turn: 150,
-        id: "ach-150",
+        id: "#ach-150",
         key: "achievement_150",
         name: "狩人王",
         description: "150 Turns"
@@ -44,14 +44,14 @@ const ACHIEVEMENTS = [
 
     {
         turn: 200,
-        id: "ach-200",
+        id: "#ach-200",
         key: "achievement_200",
         name: "神",
         description: "200 Turns"
     },
     {
         turn: 300,
-        id: "ach-300",
+        id: "#ach-300",
         key: "achievement_300",
         name: "Beast Hunter",
         description: "300 Turns"
